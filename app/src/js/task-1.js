@@ -28,3 +28,20 @@ function onSubmit(event) {
 
   console.log(data);
 }
+
+const boxEl = document.querySelector('.js-container');
+document.addEventListener('keydown', onKey);
+
+function onKey(event) {
+  console.log(event.code);
+  // if (event.code === 'Escape' || event.code === 'Enter') {
+  //   boxEl.classList.toggle('toggle');
+  // }
+
+  if (event.ctrlKey && event.code === 'KeyC') {
+    event.preventDefault();
+    console.log('Cntrl+C Error');
+    return;
+  }
+  // console.log(event);
+}
