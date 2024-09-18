@@ -64,7 +64,7 @@ const cars = [
 ];
 
 const listEl = document.querySelector('.js-list');
-const favoriteListEl = document.querySelector('.js-favorite-class');
+const favoriteListEl = document.querySelector('.js-favorite-list');
 const formEl = document.querySelector('.js-form-search');
 formEl.addEventListener('submit', onSearch);
 listEl.addEventListener('click', onClick);
@@ -103,7 +103,17 @@ function onSearch(event) {
 }
 
 function onClick(event) {
-  console.log(event.target);
-  if (event.target.favoriteListEl) {
+  //   console.log(event.target);
+  if (event.target.classList.contains('js-favorite')) {
+    event.target.classList.add('favorite-active');
+    const { id } = event.target.closest('li').dataset;
+
+    const { car, type } = cars.find(({ id: carId }) => carId === Number(id));
+    // console.log(event.target);
+    addFavorite(`${car} ${type}`);
   }
+}
+
+function addFavorite(car) {
+  favoriteListEl.insertAdjacentHTML('beforeend', `<li>${car}</li>`);
 }
